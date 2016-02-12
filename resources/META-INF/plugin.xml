@@ -1,0 +1,61 @@
+<idea-plugin version="2">
+  <id>hu.rozsenich.spotifyplugin</id>
+  <name>Spotify Plugin</name>
+  <version>1.0</version>
+  <vendor email="spotifypluginsupport@rozsenich.hu">Balazs Rozsenich</vendor>
+
+  <description><![CDATA[
+      Control Spotify playback from your toolbar!<br>
+      <strong>Works only on windows.<strong>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      First version
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="141.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <project-components>
+    <component>
+      <interface-class>hu.rozsenich.ideaplugin.spotifyplugin.SpotifyPluginStatusBarComponent</interface-class>
+      <implementation-class>hu.rozsenich.ideaplugin.spotifyplugin.SpotifyPluginStatusBarComponent</implementation-class>
+    </component>
+  </project-components>
+
+  <actions>
+    <group id="SpotifyPlugin.SpotifyGroup" icon="/icons/spotify.png">
+            <add-to-group group-id="NavBarToolBar" anchor="before" relative-to-action="ToolbarRunGroup" />
+            </group>
+
+    <!-- Add your actions here -->
+    <action id="SpotifyPlugin.playpause"
+            class="hu.rozsenich.ideaplugin.spotifyplugin.PlayPause" text="Play/Pause"
+            description="Play/pause music" icon="/icons/play.png">
+
+      <add-to-group group-id="SpotifyPlugin.SpotifyGroup"/>
+    </action>
+    <action id="SpotifyPlugin.prev" class="hu.rozsenich.ideaplugin.spotifyplugin.Prev"
+            text="Previous" description="Previous track" icon="/icons/prev.png">
+    <add-to-group group-id="SpotifyPlugin.SpotifyGroup" anchor="before"
+                  relative-to-action="SpotifyPlugin.playpause"/>
+    </action>
+    <action id="SpotifyPlugin.next" class="hu.rozsenich.ideaplugin.spotifyplugin.Next"
+            text="Next" description="Next track" icon="/icons/next.png">
+    <add-to-group group-id="SpotifyPlugin.SpotifyGroup" anchor="after"
+                  relative-to-action="SpotifyPlugin.playpause"/>
+    </action>
+  </actions>
+
+</idea-plugin>
